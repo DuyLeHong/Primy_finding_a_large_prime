@@ -1,0 +1,19 @@
+c(fermat).
+c(prime_server).
+prime_server:start_server().
+
+
+Worker1 = spawn(fun() -> prime_server:handle_worker_request(self()) end).
+prime_server:handle_worker_response(Worker1, 9, 7).
+
+
+Worker2 = spawn(fun() -> prime_server:handle_worker_request(self()) end).
+prime_server:handle_worker_response(Worker2, 17, 7).
+
+Worker3 = spawn(fun() -> prime_server:handle_worker_request(self()) end).
+prime_server:handle_worker_response(Worker3, 7, 17).
+
+Worker4 = spawn(fun() -> prime_server:handle_worker_request(self()) end).
+prime_server:handle_worker_response(Worker4, 877, 17).
+
+68756756757657656987

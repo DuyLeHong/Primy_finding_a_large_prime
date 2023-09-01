@@ -1,4 +1,4 @@
-
+-module(fermat).
 -export([mpow/3, fermat/1, test/2]).
 
 mpow(N, 1, _) ->
@@ -17,19 +17,18 @@ fermat(1) ->
     ok;
 
 % Ban đầu
-% fermat(P) ->
-%     R = rand:uniform(P-1),
-%     T = mpow(R, P-1, P),
-%     case T == 1 of
-%         true -> ok;
-%         _ -> no
-%     end.
-
-% Tối ưu
 fermat(P) ->
     R = rand:uniform(P-1),
     T = mpow(R, P-1, P),
-    T == 1. 
+    if T == 1 -> ok;
+    true ->no
+    end.
+
+%Tối ưu
+% fermat(P) ->
+%     R = rand:uniform(P-1),
+%     T = mpow(R, P-1, P),
+%     T == 1. 
 
 test(_, 0) ->
     ok;
